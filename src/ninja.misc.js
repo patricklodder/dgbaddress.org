@@ -22,8 +22,7 @@ ninja.seeder = {
 			ninja.wallets.singlewallet.open();
 			// UI
 			document.getElementById("generate").style.display = "none";
-			// temporarily removed menu
-			//document.getElementById("menu").style.visibility = "visible";
+			document.getElementById("menu").style.visibility = "visible";
 		}
 	},
 
@@ -136,6 +135,7 @@ ninja.tabSwitch = function (walletTab) {
 	if (walletTab.className.indexOf("selected") == -1) {
 		// unselect all tabs
 		for (var wType in ninja.wallets) {
+			if (!document.getElementById(wType)) continue;
 			document.getElementById(wType).className = "tab";
 			ninja.wallets[wType].close();
 		}

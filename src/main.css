@@ -128,7 +128,7 @@ body { font-family: Arial; }
 {
 	#tagline { margin: 0 0 15px 0; font-style: italic; }
 	.menu { text-align: left; }
-	.menu .tab { border-top-left-radius: 5px; border-top-right-radius: 5px; display: inline-block; background-color: #6C8C6C;
+	.menu .tab { border-top-left-radius: 5px; border-top-right-radius: 5px; display: inline-block; background-color: #6699CC;
 					border: 2px solid #003366; padding: 5px; margin: 0 2px 0 0; position: relative; top: 2px; z-index: 110; cursor: pointer; }
 	.menu .tab:hover { color: #FFF; }
 	.menu .tab.selected { background-color: #FFF; border-bottom: 2px solid #FFF; cursor: default; }
