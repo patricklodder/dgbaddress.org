@@ -21,5 +21,6 @@ if (ninja.getQueryString()["testnet"] == "true" || ninja.getQueryString()["testn
 	Bitcoin.ECKey.privateKeyPrefix = 0xEF; // testnet
 	ninja.testnetMode = true;
 }
-// if users does not move mouse after random amount of time then generate the key anyway.
-setTimeout(ninja.seeder.forceGenerate, ninja.seeder.seedLimit * 20);
+if (ninja.getQueryString()["showseedpool"] == "true" || ninja.getQueryString()["showseedpool"] == "1") {
+	document.getElementById("seedpoolarea").style.display = "block";
+}
