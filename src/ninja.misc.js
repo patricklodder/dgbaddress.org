@@ -1,6 +1,6 @@
 ninja.seeder = {
 	init: (function () {
-		document.getElementById("generatekeyinput").value = "";
+		//document.getElementById("generatekeyinput").value = "";
 	})(),
 
 	// number of mouse movements to wait for
@@ -21,7 +21,7 @@ ninja.seeder = {
 		if (ninja.seeder.seedCount == ninja.seeder.seedLimit) {
 			ninja.seeder.seedCount++;
 			ninja.wallets.singlewallet.open();
-			document.getElementById("generate").style.display = "none";
+			document.getElementById("init").style.display = "none";
 			document.getElementById("menu").style.visibility = "visible";
 			ninja.seeder.removePoints();
 		}
@@ -191,7 +191,7 @@ ninja.tabSwitch = function (walletTab) {
 		// unselect all tabs
 		for (var wType in ninja.wallets) {
 			if (!document.getElementById(wType)) continue;
-			document.getElementById(wType).className = "tab";
+			document.getElementById(wType).className = document.getElementById(wType).className.replace(/\s*selected/, '');
 			ninja.wallets[wType].close();
 		}
 		walletTab.className += " selected";
