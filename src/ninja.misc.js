@@ -29,7 +29,7 @@ ninja.seeder = {
 		else if ((ninja.seeder.seedCount < ninja.seeder.seedLimit) && evt && (timeStamp - ninja.seeder.lastInputTime) > 40) {
 			SecureRandom.seedTime();
 			SecureRandom.seedInt16((evt.clientX * evt.clientY));
-			ninja.seeder.showPoint(evt.clientX, evt.clientY);
+			//ninja.seeder.showPoint(evt.clientX, evt.clientY);
 			ninja.seeder.seedCount++;
 			ninja.seeder.lastInputTime = new Date().getTime();
 			ninja.seeder.showPool();

@@ -6,6 +6,7 @@ window.onload = function () {
 
 	//seeding
 	unobtrusive.bindToTag('body', 'mousemove', function (e) { ninja.seeder.seed(e); });
+	unobtrusive.bindToTag('body', 'click', function (e) { window.SecureRandom.seedTime(); });
 
 	//generators
 	unobtrusive.bindToId('newaddress', 'click', function () { ninja.wallets.singlewallet.generateNewAddressAndKey(); return false; });

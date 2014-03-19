@@ -13,6 +13,9 @@ input {
 	font-size: 14px;
 	line-height: 18px;
 }
+
+#generatelabelmovemouse { font-weight: bolder; font-size: 24px; color: #cc0000; }
+
 .right { text-align: right; }
 .walletarea { display: none; border-top: 5px solid #ededed; }
 hr { margin: 20px 0; border-top: 2px dashed #008000; }
