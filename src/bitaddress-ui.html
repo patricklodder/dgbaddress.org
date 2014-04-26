@@ -136,7 +136,7 @@
 			<div id="menu" class="fleft menu-pills">
 				<a class="fleft button-pill selected" id="singlewallet" href="#">Single Wallet</a>
 				<a class="fleft button-pill" id="bulkwallet" href="#">Bulk Wallet</a>
-				<!-- <li class="tab" id="splitwallet" onclick="ninja.tabSwitch(this);">Split Wallet -->
+				<a class="fleft button-pill" id="splitwallet" href="#">Split Wallet</a>
 				<!-- <a class="fleft button-pill" id="paperwallet" href="#">Paper Wallet</a> -->
 			</div>
 		</header>
@@ -344,23 +344,28 @@
 			</div>
 
 			<div id="splitarea" class="walletarea">
-				<div id="splitcommands" class="commands " >
-					<label id="splitlabelthreshold">Minimum share threshold needed to combine</label>
-					<input type="text" id="splitthreshold" value="2" size="4"/>
-					<br/>
-					<label id="splitlabelshares">Number of shares</label>
-					<input type="text" id="splitshares" value="3" size="4"/>
-					<span><input type="button" id="splitview" value="Generate" onclick="ninja.wallets.splitwallet.splitKey();"></span>
-					<div id="splitstep1icon" class="more " onclick="ninja.wallets.splitwallet.openCloseStep(1);"></div>
+				<div id="splitcommands" class="commands clear" >
+					<span class="fleft">
+						<label id="splitlabelshares"># shares:</label>
+						<input type="text" id="splitshares" value="3" size="4"/>
+					</span>
+					<span class="fleft">
+						<label id="splitlabelthreshold">release requirement:</label>
+						<input type="text" id="splitthreshold" value="2" size="4"/>
+						<label id="splitlabelthreshold">shares</label>
+					</span>
+					<a class="fleft button-pill button-pill-alt" id="splitkey" href="#">Generate</a>
+					<div id="splitstep1icon" class="more"></div>
+					<div style="clear: both"></div>
 				</div>
 				<div id="splitstep1area"></div>
 
 				<div id="combinecommands" class="left commands">
-					<span>
-						<label id="combinelabelentershares">Enter Available Shares (whitespace separated)</label> 
-						<textarea id="combineinput" cols="60" rows="10"></textarea><br/>
-					</span>
-					<span><input type="button" id="combineview" value="Combine Shares" onclick="ninja.wallets.splitwallet.combineShares();"></span>
+					<label id="combinelabelentershares">Enter Available Shares (whitespace separated)</label> 
+					<br/>	
+					<textarea id="combineinput" cols="60" rows="10"></textarea>
+					<br/>
+					<input type="button" id="combineview" value="Combine Shares" onclick="ninja.wallets.splitwallet.combineShares();">
 				</div>
 				<div id="splitstep2area">
 					<div id="combineoutput">
@@ -510,11 +515,11 @@
 	</script>
 	<script type="text/javascript">
 //ninja.detailwallet.js
-	</script>
+	</script> -->
 	<script type="text/javascript">
 //ninja.splitwallet.js
 	</script>
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 //ninja.unittests.js
 	</script> -->
 	<script type="text/javascript">
