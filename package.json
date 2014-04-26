@@ -1,6 +1,6 @@
 {
   "name": "dgbaddress.org",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "description": "Open Source JavaScript Client-Side DigiByte Wallet Generator",
   "main": "Gruntfile.js",
   "dependencies": {
