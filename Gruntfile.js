@@ -25,6 +25,7 @@ module.exports = function (grunt) {
 					{ token: "//crypto-scrypt.js", file: "./src/crypto-scrypt.js" },
 					{ token: "//unobtrusive.js", file: "./src/unobtrusive.js" },
 					{ token: "//ellipticcurve.js", file: "./src/ellipticcurve.js" },
+					{ token: "//secrets.js", file: "./src/secrets.js" },
 					{ token: "//ninja.key.js", file: "./src/ninja.key.js" },
 					{ token: "//ninja.misc.js", file: "./src/ninja.misc.js" },
 					{ token: "//ninja.onload.js", file: "./src/ninja.onload.js" },
@@ -36,6 +37,7 @@ module.exports = function (grunt) {
 					//{ token: "//ninja.brainwallet.js", file: "./src/ninja.brainwallet.js" },
 					//{ token: "//ninja.vanitywallet.js", file: "./src/ninja.vanitywallet.js" },
 					//{ token: "//ninja.detailwallet.js", file: "./src/ninja.detailwallet.js" },
+					{ token: "//ninja.splitwallet.js", file: "./src/ninja.splitwallet.js" },
 					{ token: "//qrcode.js", file: "./src/qrcode.js" },
 					{ token: "//securerandom.js", file: "./src/securerandom.js" },
 					{ token: "//main.css", file: "./src/main.css" }

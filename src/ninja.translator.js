@@ -1,6 +1,17 @@
 ninja.translator = {
 	currentCulture: "en",
 
+	autoDetectTranslation: function() {
+		// window.navigator.language for Firefox / Chrome / Opera Safari
+		// window.navigator.userLanguage for IE
+		var language = window.navigator.language || window.navigator.userLanguage;
+		if (!ninja.translator.translate(language)) {
+			// Try to remove part after dash, for example cs-CZ -> cs
+			language = language.substr(0, language.indexOf('-'));
+			ninja.translator.translate(language);
+		}
+	},
+
 	translate: function (culture) {
 		var dict = ninja.translator.translations[culture];
 		if (dict) {
@@ -20,6 +31,9 @@ ninja.translator = {
 					document.getElementById(id).innerHTML = dict[id];
 				}
 			}
+			return true;
+		} else {
+			return false;
 		}
 	},
 
@@ -97,11 +111,13 @@ ninja.translator = {
 			"singleprint": "Imprimir",
 			"singlelabelbitcoinaddress": "Dirección Litecoin",
 			"singlelabelprivatekey": "Clave privada (formato para importar):",
-			"singletip1": "<b>A Litecoin wallet</b> is as simple as a single pairing of a Litecoin address with it's corresponding Litecoin private key. Such a wallet has been generated for you in your web browser and is displayed above.", //TODO: please translate
-			"singletip2": "<b>To safeguard this wallet</b> you must print or otherwise record the Litecoin address and private key. It is important to make a backup copy of the private key and store it in a safe location. This site does not have knowledge of your private key. If you are familiar with PGP you can download this all-in-one HTML page and check that you have an authentic version from the author of this site by matching the SHA1 hash of this HTML with the SHA1 hash available in the signed version history document linked on the footer of this site. If you leave/refresh the site or press the Generate New Address button then a new private key will be generated and the previously displayed private key will not be retrievable.	Your Litecoin private key should be kept a secret. Whomever you share the private key with has access to spend all the litecoins associated with that address. If you print your wallet then store it in a zip lock bag to keep it safe from water. Treat a paper wallet like cash.", //TODO: please translate
-			"singletip3": "<b>Add funds</b> to this wallet by instructing others to send litecoins to your Litecoin address.", //TODO: please translate
-			"singletip4": "<b>Check your balance</b> by going to explorer.litecoin.net or block-explorer.com and entering your Litecoin address.", //TODO: please translate
-			"singletip5": "<b>Spend your litecoins</b> by downloading one of the popular litecoin p2p clients and importing your private key to the p2p client wallet. Keep in mind when you import your single key to a litecoin p2p client and spend funds your key will be bundled with other private keys in the p2p client wallet. When you perform a transaction your change will be sent to another litecoin address within the p2p client wallet. You must then backup the p2p client wallet and keep it safe as your remaining litecoins will be stored there. Satoshi advised that one should never delete a wallet.", //TODO: please translate
+			"singletip1": "<b>A Bitcoin wallet</b> is as simple as a single pairing of a Bitcoin address with it's corresponding Bitcoin private key. Such a wallet has been generated for you in your web browser and is displayed above.", //TODO: please translate
+			"singletip2": "<b>To safeguard this wallet</b> you must print or otherwise record the Bitcoin address and private key. It is important to make a backup copy of the private key and store it in a safe location. This site does not have knowledge of your private key. If you are familiar with PGP you can download this all-in-one HTML page and check that you have an authentic version from the author of this site by matching the SHA1 hash of this HTML with the SHA1 hash available in the signed version history document linked on the footer of this site. If you leave/refresh the site or press the Generate New Address button then a new private key will be generated and the previously displayed private key will not be retrievable.	Your Bitcoin private key should be kept a secret. Whomever you share the private key with has access to spend all the bitcoins associated with that address. If you print your wallet then store it in a zip lock bag to keep it safe from water. Treat a paper wallet like cash.", //TODO: please translate
+			"singletip3": "<b>Add funds</b> to this wallet by instructing others to send bitcoins to your Bitcoin address.", //TODO: please translate
+			"singletip4": "<b>Check your balance</b> by going to blockchain.info or blockexplorer.com and entering your Bitcoin address.", //TODO: please translate
+			"singletip5": "<b>Spend your bitcoins</b> by going to blockchain.info and sweep the full balance of your private key into your account at their website. You can also spend your funds by downloading one of the popular bitcoin p2p clients and importing your private key to the p2p client wallet. Keep in mind when you import your single key to a bitcoin p2p client and spend funds your key will be bundled with other private keys in the p2p client wallet. When you perform a transaction your change will be sent to another bitcoin address within the p2p client wallet. You must then backup the p2p client wallet and keep it safe as your remaining bitcoins will be stored there. Satoshi advised that one should never delete a wallet.", //TODO: please translate
+			"singleshare": "SHARE", //TODO: please translate
+			"singlesecret": "SECRET", //TODO: please translate
 
 			// paper wallet html
 			"paperlabelhideart": "Ocultar diseño",
@@ -230,11 +246,14 @@ ninja.translator = {
 			"singleprint": "Imprimer",
 			"singlelabelbitcoinaddress": "Adresse Litecoin:",
 			"singlelabelprivatekey": "Clé Privée (Format d'importation de porte-monnaie):",
-			"singletip1": "<b>A Litecoin wallet</b> is as simple as a single pairing of a Litecoin address with it's corresponding Litecoin private key. Such a wallet has been generated for you in your web browser and is displayed above.", //TODO: please translate
-			"singletip2": "<b>To safeguard this wallet</b> you must print or otherwise record the Litecoin address and private key. It is important to make a backup copy of the private key and store it in a safe location. This site does not have knowledge of your private key. If you are familiar with PGP you can download this all-in-one HTML page and check that you have an authentic version from the author of this site by matching the SHA1 hash of this HTML with the SHA1 hash available in the signed version history document linked on the footer of this site. If you leave/refresh the site or press the Generate New Address button then a new private key will be generated and the previously displayed private key will not be retrievable.	Your Litecoin private key should be kept a secret. Whomever you share the private key with has access to spend all the litecoins associated with that address. If you print your wallet then store it in a zip lock bag to keep it safe from water. Treat a paper wallet like cash.", //TODO: please translate
-			"singletip3": "<b>Add funds</b> to this wallet by instructing others to send litecoins to your Litecoin address.", //TODO: please translate
-			"singletip4": "<b>Check your balance</b> by going to explorer.litecoin.net or block-explorer.com and entering your Litecoin address.", //TODO: please translate
-			"singletip5": "<b>Spend your litecoins</b> by downloading one of the popular litecoin p2p clients and importing your private key to the p2p client wallet. Keep in mind when you import your single key to a litecoin p2p client and spend funds your key will be bundled with other private keys in the p2p client wallet. When you perform a transaction your change will be sent to another litecoin address within the p2p client wallet. You must then backup the p2p client wallet and keep it safe as your remaining litecoins will be stored there. Satoshi advised that one should never delete a wallet.", //TODO: please translate
+
+			"singletip1": "<b>A Bitcoin wallet</b> is as simple as a single pairing of a Bitcoin address with it's corresponding Bitcoin private key. Such a wallet has been generated for you in your web browser and is displayed above.", //TODO: please translate
+			"singletip2": "<b>To safeguard this wallet</b> you must print or otherwise record the Bitcoin address and private key. It is important to make a backup copy of the private key and store it in a safe location. This site does not have knowledge of your private key. If you are familiar with PGP you can download this all-in-one HTML page and check that you have an authentic version from the author of this site by matching the SHA1 hash of this HTML with the SHA1 hash available in the signed version history document linked on the footer of this site. If you leave/refresh the site or press the Generate New Address button then a new private key will be generated and the previously displayed private key will not be retrievable.	Your Bitcoin private key should be kept a secret. Whomever you share the private key with has access to spend all the bitcoins associated with that address. If you print your wallet then store it in a zip lock bag to keep it safe from water. Treat a paper wallet like cash.", //TODO: please translate
+			"singletip3": "<b>Add funds</b> to this wallet by instructing others to send bitcoins to your Bitcoin address.", //TODO: please translate
+			"singletip4": "<b>Check your balance</b> by going to blockchain.info or blockexplorer.com and entering your Bitcoin address.", //TODO: please translate
+			"singletip5": "<b>Spend your bitcoins</b> by going to blockchain.info and sweep the full balance of your private key into your account at their website. You can also spend your funds by downloading one of the popular bitcoin p2p clients and importing your private key to the p2p client wallet. Keep in mind when you import your single key to a bitcoin p2p client and spend funds your key will be bundled with other private keys in the p2p client wallet. When you perform a transaction your change will be sent to another bitcoin address within the p2p client wallet. You must then backup the p2p client wallet and keep it safe as your remaining bitcoins will be stored there. Satoshi advised that one should never delete a wallet.", //TODO: please translate
+			"singleshare": "SHARE", //TODO: please translate
+			"singlesecret": "SECRET", //TODO: please translate
 
 			// paper wallet html
 			"paperlabelhideart": "Retirer Le Style?",
@@ -363,11 +382,14 @@ ninja.translator = {
 			"singleprint": "Εκτύπωση",
 			"singlelabelbitcoinaddress": "Διεύθυνση Litecoin:",
 			"singlelabelprivatekey": "Προσωπικό Κλειδί (Μορφή εισαγωγής σε πορτοφόλι):",
-			"singletip1": "<b>A Litecoin wallet</b> is as simple as a single pairing of a Litecoin address with it's corresponding Litecoin private key. Such a wallet has been generated for you in your web browser and is displayed above.", //TODO: please translate
-			"singletip2": "<b>To safeguard this wallet</b> you must print or otherwise record the Litecoin address and private key. It is important to make a backup copy of the private key and store it in a safe location. This site does not have knowledge of your private key. If you are familiar with PGP you can download this all-in-one HTML page and check that you have an authentic version from the author of this site by matching the SHA1 hash of this HTML with the SHA1 hash available in the signed version history document linked on the footer of this site. If you leave/refresh the site or press the Generate New Address button then a new private key will be generated and the previously displayed private key will not be retrievable.	Your Litecoin private key should be kept a secret. Whomever you share the private key with has access to spend all the litecoins associated with that address. If you print your wallet then store it in a zip lock bag to keep it safe from water. Treat a paper wallet like cash.", //TODO: please translate
-			"singletip3": "<b>Add funds</b> to this wallet by instructing others to send litecoins to your Litecoin address.", //TODO: please translate
-			"singletip4": "<b>Check your balance</b> by going to explorer.litecoin.net or block-explorer.com and entering your Litecoin address.", //TODO: please translate
-			"singletip5": "<b>Spend your litecoins</b> by downloading one of the popular litecoin p2p clients and importing your private key to the p2p client wallet. Keep in mind when you import your single key to a litecoin p2p client and spend funds your key will be bundled with other private keys in the p2p client wallet. When you perform a transaction your change will be sent to another litecoin address within the p2p client wallet. You must then backup the p2p client wallet and keep it safe as your remaining litecoins will be stored there. Satoshi advised that one should never delete a wallet.", //TODO: please translate
+
+			"singletip1": "<b>A Bitcoin wallet</b> is as simple as a single pairing of a Bitcoin address with it's corresponding Bitcoin private key. Such a wallet has been generated for you in your web browser and is displayed above.", //TODO: please translate
+			"singletip2": "<b>To safeguard this wallet</b> you must print or otherwise record the Bitcoin address and private key. It is important to make a backup copy of the private key and store it in a safe location. This site does not have knowledge of your private key. If you are familiar with PGP you can download this all-in-one HTML page and check that you have an authentic version from the author of this site by matching the SHA1 hash of this HTML with the SHA1 hash available in the signed version history document linked on the footer of this site. If you leave/refresh the site or press the Generate New Address button then a new private key will be generated and the previously displayed private key will not be retrievable.	Your Bitcoin private key should be kept a secret. Whomever you share the private key with has access to spend all the bitcoins associated with that address. If you print your wallet then store it in a zip lock bag to keep it safe from water. Treat a paper wallet like cash.", //TODO: please translate
+			"singletip3": "<b>Add funds</b> to this wallet by instructing others to send bitcoins to your Bitcoin address.", //TODO: please translate
+			"singletip4": "<b>Check your balance</b> by going to blockchain.info or blockexplorer.com and entering your Bitcoin address.", //TODO: please translate
+			"singletip5": "<b>Spend your bitcoins</b> by going to blockchain.info and sweep the full balance of your private key into your account at their website. You can also spend your funds by downloading one of the popular bitcoin p2p clients and importing your private key to the p2p client wallet. Keep in mind when you import your single key to a bitcoin p2p client and spend funds your key will be bundled with other private keys in the p2p client wallet. When you perform a transaction your change will be sent to another bitcoin address within the p2p client wallet. You must then backup the p2p client wallet and keep it safe as your remaining bitcoins will be stored there. Satoshi advised that one should never delete a wallet.", //TODO: please translate
+			"singleshare": "SHARE", //TODO: please translate
+			"singlesecret": "SECRET", //TODO: please translate
 
 			// paper wallet html
 			"paperlabelhideart": "Απόκρυψη γραφικού;",
@@ -500,7 +522,9 @@ ninja.translator = {
 			"singletip2": "<b>Per mettere in sicurezza questo portafogli</b> devi stampare o quantomeno salvare l'indirizzo bitcoin e la Chiave privata. È molto importante fare una copia di backup della chiave privata e conservarla in un posto sicuro. Questo sito non conosce la tua chiave privata. Se hai familiarità con PGP, puoi scaricare per intero questa pagina HTML e controllare la sua autentiticità. Puoi confrontare il codice SHA1 della pagina scaricata con il codice firmato dall'autore che trovi nella cronologia delle versioni (in fondo alla pagina). Se abbandoni/aggiorni la pagina web oppure premi il tasto Genera, un nuovo indirizzo sostituirà quello vecchio che non potrà più essere recuperato. La chiave privata dovrebbe essere tenuta segreta, chiunque conosca la chiave privata può avere accesso e spendere i tuoi bitcoin. Se stampi il tuo portafogli conservalo in una busta di plastica sigillata per tenerla al riparo dall'acqua. Tratta quanto stampato alla stregua di una banconota.",
 			"singletip3": "<b>Ricevi fondi</b> su questo portafogli mostrando l'indirizzo bitcoin per il versamento.",
 			"singletip4": "<b>Controlla il saldo</b> visitando blockchain.info o blockexplorer.com cercando il tuo indirizzo bitcoin.",
-			"singletip5": "<b>Spendi i tuoi bitcoin</b> aprendo un account su blockchain.info o mtgox.com usando la chiave privata. Puoi anche spendere i tuoi bitcoin scaricando il popolare client p2p ed importando in esso il portafogli. Tieni presente che quando importi una chiave nel client p2p, nel momento in cui spendi le monete, la chiave viene raggruppata insieme alle altre presenti nel programma con i restanti bitcoin. Quando esegui una transazione gli spiccioli verranno invitati verso un altro indirizzo all'interno del tuo portafogli gestito dal client p2p. Quindi dovresti tenere un backup del portafogli contenuto nel client p2p e tenere questo in un posto sicuro fin tanto terrai dei bitcoin lì. Satoshi consiglia di non cancellare mai un portafogli. ",
+			"singletip5": "<b>Spendi i tuoi bitcoin</b> aprendo un account su blockchain.info usando la chiave privata. Puoi anche spendere i tuoi bitcoin scaricando il popolare client p2p ed importando in esso il portafogli. Tieni presente che quando importi una chiave nel client p2p, nel momento in cui spendi le monete, la chiave viene raggruppata insieme alle altre presenti nel programma con i restanti bitcoin. Quando esegui una transazione gli spiccioli verranno invitati verso un altro indirizzo all'interno del tuo portafogli gestito dal client p2p. Quindi dovresti tenere un backup del portafogli contenuto nel client p2p e tenere questo in un posto sicuro fin tanto terrai dei bitcoin lì. Satoshi consiglia di non cancellare mai un portafogli. ",
+			"singleshare": "SHARE", //TODO: please translate
+			"singlesecret": "SECRET", //TODO: please translate
 
 			// paper wallet html
 			"paperlabelhideart": "Senza grafica?",
@@ -510,7 +534,6 @@ ninja.translator = {
 			"paperprint": "Stampa",
 			"paperlabelBIPpassphrase": "Passphrase:",
 			"paperlabelencrypt": "BIP38 criptato?",
-			"paperadvancedcommandslabel": "Opzioni avanzate",
 
 			// bulk wallet html
 			"bulklabelstartindex": "Indice iniziale:",
@@ -635,7 +658,10 @@ ninja.translator = {
 			"singletip2": "<b>Um dieses Wallet zu sch&uuml;tzen,</b> musst du es entweder ausdrucken oder anderweitig die Bitcoin-Adresse und den privaten Schl&uuml;ssel sichern. Fertige auf jeden Fall eine Kopie des privaten Schl&uuml;ssels an und bewahre sie an einem sicheren Ort auf. Der private Schl&uuml;ssel liegt nur lokal auf deinem Rechner vor und wurde nicht ins Internet &uuml;bertragen. Falls du dich mit PGP auskennst, kannst du dir diese all-in-one HTML-Seite herunterladen. Um zu &uuml;berpr&uuml;fen, ob die heruntergeladene Version authentisch ist, kannst du den SHA1-Hash dieser Seite mit dem SHA1-Hash in der signierten Versionsgeschichte am unteren Ende dieser Seite abgleichen. Wenn du diese Seite verl&auml;sst, sie neul&auml;dst bzw. den \"Neues Wallet erstellen\"-Button dr&uuml;ckst, wird ein neues Wallet erstellt und das vorherige wird nicht mehr abrufbar sein. Du solltest deinen privaten Schl&uuml;ssel geheim halten. Wer den privaten Schl&uuml;ssel hat, kann damit auf alle im Wallet befindlichen Bitcoin zugreifen und sie nach Belieben ausgeben. Behandle dein gedrucktes Wallet wie echtes Geld!",
 			"singletip3": "Du kannst <b>Guthaben</b> zu deinem Wallet <b>hinzuf&uuml;gen</b>, indem du genau wie bei anderen &Uuml;berweisungen Bitcoins an die Bitcoin-Adresse deines Wallets schickst.",
 			"singletip4": "<b>&Uuml;berpr&uuml;fe dein Guthaben,</b> indem du deine Bitcoin-Adresse auf blockchain.info bzw. blockexplorer.com eingibst.",
-			"singletip5": "Du kannst deine <b>Bitcoins ausgeben</b>, indem du das gesamte mit deinem privaten Schl&uuml;ssel verbundene Guthaben auf deinen Account bei blockchain.info bzw. mtgox.com &uuml;bertr&auml;gst. Alternativ kannst du dir ein Bitcoinprogramm herunterladen und deinen privaten Schl&uuml;ssel in dieses importieren. Beachte dabei aber, dass, sobald du Bitcoins mit dem Programm sendest, dein privater Schl&uuml;ssel mit den anderen privaten Schl&uuml;sseln, die vom Programm bereitgestellt werden, verbunden wird. Bei einer &Uuml;berweisung wird etwas R&uuml;ckgeld an eine der Bitcoin-Adressen des Programms geschickt. Deswegen musst du, um tats&auml;chlich dein gesamtes Guthaben zu sichern, ein Backup vom gesamten Wallet des Programms, das nun auch deinen importierten privaten Schl&uuml;ssel enth&auml;lt, anfertigen. Satoshi r&auml;t, dass man unter keinen Umst&auml;nden ein Wallet l&ouml;schen sollte.",
+
+			"singletip5": "Du kannst deine <b>Bitcoins ausgeben</b>, indem du das gesamte mit deinem privaten Schl&uuml;ssel verbundene Guthaben auf deinen Account bei blockchain.info &uuml;bertr&auml;gst. Alternativ kannst du dir ein Bitcoinprogramm herunterladen und deinen privaten Schl&uuml;ssel in dieses importieren. Beachte dabei aber, dass, sobald du Bitcoins mit dem Programm sendest, dein privater Schl&uuml;ssel mit den anderen privaten Schl&uuml;sseln, die vom Programm bereitgestellt werden, verbunden wird. Bei einer &Uuml;berweisung wird etwas R&uuml;ckgeld an eine der Bitcoin-Adressen des Programms geschickt. Deswegen musst du, um tats&auml;chlich dein gesamtes Guthaben zu sichern, ein Backup vom gesamten Wallet des Programms, das nun auch deinen importierten privaten Schl&uuml;ssel enth&auml;lt, anfertigen. Satoshi r&auml;t, dass man unter keinen Umst&auml;nden ein Wallet l&ouml;schen sollte.",
+			"singleshare": "SHARE", //TODO: please translate
+			"singlesecret": "SECRET", //TODO: please translate
 
 			// paper wallet html
 			"paperlabelhideart": "Grafische Gestaltung ausblenden?",
@@ -769,7 +795,7 @@ ninja.translator = {
 			"singletip2": "<b>Pro zabezpečení této peněženky</b> musíte tuto Bitcoin adresu a soukromý klíč vytisknout a nebo jinak poznamenat. Je důležité provést zálohu soukromého klíče a jeho uschování na bezpečném místě. Tato webová stránka nemá žádné informace o vašem soukromém klíči. Pokud ovládáte PGP, můžete celou tuto stránku stáhnout v jednom HTML souboru a ověřit její pravost srovnáním SHA1 hashe s podepsaným dokumentem historie verzí. Odkaz naleznete v patičce této stránky. Pokud opustíte či obnovíte tuto stránku nebo kliknete na 'Vytvořit novou adresu' dojde k vygenerování nového soukromého klíče a předtím zobrazený klíč bude ztracen. Váš soukromý klíč musíte uchovat v tajnosti. Každý kdo má tento klíč k dispozici může utratit všechny peníze v této peněžence. Pokud budete peněženku tisknout, uzavřete ji do nepropustného obalu nebo ji zalaminujte. Tím zabráníte jejímu poškození vodou. Chovejte se k této peněžence jako k normálním bankovkám.",
 			"singletip3": "<b>Pro vložení</b> peněz do této peněženky stačí zaslat peníze na Bitcoin adresu.",
 			"singletip4": "<b>Zkontrolovat zůstatek</b> můžete na webové stránce blockchain.info nebo blockexplorer.com po zadání Bitcoin adresy.",
-			"singletip5": "<b>Utratit Bitcoiny</b> můžete pomocí blockchain.info či mtgox.com načtením celého zůstatku pomocí soukromého klíče do vašeho účtu. Utratit zůstatek můžete také pomocí jednoho z P2P Bitcoin klientů naimportováním soukromého klíče. Myslete na to, že importem klíče do klienta se stane součástí jeho peněženky. Pokud převedete někomu peníze, nespotřebovaný zůstatek se zašle na jinou Bitcoin adresu uvedenou v P2P klienta. Tuto novou adresu musíte vyzálohovat a udržovat v bezpečí. Satoshi doporučuje, že by nikdo nikdy neměl mazat peněženku.",
+			"singletip5": "<b>Utratit Bitcoiny</b> můžete pomocí blockchain.info načtením celého zůstatku pomocí soukromého klíče do vašeho účtu. Utratit zůstatek můžete také pomocí jednoho z P2P Bitcoin klientů naimportováním soukromého klíče. Myslete na to, že importem klíče do klienta se stane součástí jeho peněženky. Pokud převedete někomu peníze, nespotřebovaný zůstatek se zašle na jinou Bitcoin adresu uvedenou v P2P klienta. Tuto novou adresu musíte vyzálohovat a udržovat v bezpečí. Satoshi doporučuje, že by nikdo nikdy neměl mazat peněženku.",
 			"singleshare": "SDÍLEJTE",
 			"singlesecret": "SOUKROMÉ",
 
@@ -842,7 +868,7 @@ ninja.translator = {
 			"detaillabelbitcoinaddresscomp": "Komprimovaná bitcoin adresa:",
 			"detaillabelpublickey": "Veřejný klíč (130 znaků [0-9A-F]):",
 			"detaillabelpublickeycomp": "Komprimovaný veřejný klíč (66 znaků [0-9A-F]):",
-			"detaillabelprivwif": "Soukromý klíč WIF  <br />51 znaků v base58, začíná '5'",
+			"detaillabelprivwif": "Soukromý klíč WIF  <br />51 znaků v base58, začíná",
 			"detaillabelprivwifcomp": "Komprimovaný soukromý klíč WIF <br />52 znaků v base58, začíná",
 			"detailcompwifprefix": "'K' nebo 'L'",
 			"detaillabelprivhex": "Soukromý klíč v hexadecimálním formátů (64 znaků [0-9A-F]):",
@@ -853,6 +879,283 @@ ninja.translator = {
 			"detaillabelq1": "Jak si mohu vytvořit peněženku pomocí hrací kostky? Co je to B6?",
 			"detaila1": "Důležitá součást vytváření Bitcoin peněženky je jistota, že náhodná čísla použitá pro její tvorbu jsou opravdu náhodná. Fyzická náhoda je lepší než počítačem generovaná pseudonáhoda. Pomocí hrací kostky je možné jednoduše získat fyzicky náhodná čísla. Pro vytvoření soukromého klíče potřebujete pouze šestihrannou kostku, kterou 99x hodíte. Každý tento hod zaznamenejte. Při zapisování převeďte čísla takto: 1=1, 2=2, 3=3, 4=4, 5=5, 6=0. Pomocí této techniky zapisujete velké, opravdu náhodné číslo, svůj soukromý klíč v B6 nebo také base 6 formátu. Těchto 99 čísel napište do pole výše a klikněte na Zobrazit detail. Poté se vám zobrazí Bitcoin adresa přidružená k tomuto soukromému klíči. Soukromý klíč byste si měli zaznamenat také ve WIF formátu, který je široce používán."
 		},
+
+		"hu": {  // 02-MAR-2014 16:57
+			// javascript alerts or messages
+			"testneteditionactivated": "TESTNET KIADÁS AKTIVÁLVA",
+			"paperlabelbitcoinaddress": "Bitcoin cím:",
+			"paperlabelprivatekey": "Privát kulcs (WIF, tárca import formátumban):",
+			"paperlabelencryptedkey": "Titkosított privát kulcs (Jelszó szükséges)",
+			"bulkgeneratingaddresses": "Cím generálás... ",
+			"brainalertpassphrasetooshort": "A megadott jelmondat túl rövid.\n\n",
+			"brainalertpassphrasewarning": "Figyelem: Fontos, hogy erős jelmondatot válasszon, mert különben a jelmondatot nyers erővel feltörhetik és a bitcoinjait ellophatják.",
+			"brainalertpassphrasedoesnotmatch": "A jelmondat és az ellenőrző jelmondat nem azonos.",
+			"detailalertnotvalidprivatekey": "A beadott szöveg nem érvénytelen Privát Kulcs",
+			"detailconfirmsha256": "Az ön által beadott szöveg érvénytelen Privát Kulcs!\n\nSzeretné a beadott szöveget jelmondatként kezelni, és annak SHA256 zanzájából egy Privát Kulcsot előállítani?\n\nFigyelem: Fontos, hogy erős jelmondatot válasszon, mert különben a jelmondatot nyers erővel feltörhetik és a bitcoinjait ellophatják.",
+			"bip38alertincorrectpassphrase": "Érvénytelen jelmondat a titkosított privát kulcshoz.",
+			"bip38alertpassphraserequired": "A BIP38 kulcshoz jelmondat szükséges",
+			"vanityinvalidinputcouldnotcombinekeys": "Érvénytelen bemenet. A kulcsok nem tartoznak össsze.",
+			"vanityalertinvalidinputpublickeysmatch": "Érvénytelen bemenet. A két megadott nyilvános kulcs azonos. Két különböző kulcs bevitelére van szükség.",
+			"vanityalertinvalidinputcannotmultiple": "Érvénytelen bemenet. Két nyilvános kulcs összeszorzása nem lehetséges. Válassza az 'Összeadás'-t, ha két nyilvános kulcsból szeretne egy bitcoin címet kapni.",
+			"vanityprivatekeyonlyavailable": "Csak két privát kulcs kombinálásakor lehetséges",
+			"vanityalertinvalidinputprivatekeysmatch": "Érvénytelen bemenet. A két megadott privát kulcs azonos. Két különböző kulcs bevitelére van szükség.",
+
+			// header and menu html
+			"tagline": "Nyílt forráskódú, kliens oldali JavaScript, Bitcoin pénztárca előállítására",
+			"generatelabelbitcoinaddress": "A bitcoin cím előállítása...",
+			"generatelabelmovemouse": "MOZGASSA az egeret, ha fokozni szeretné a véletlenszerűséget...",
+			"generatelabelkeypress": "VAGY gépeljen be néhány véletlenszerű karaktert ebbe a szövegdobozba",
+			"singlewallet": "Egyszerű pénztárca",
+			"paperwallet": "Papír pénztárca",
+			"bulkwallet": "Tömeges pénztárca",
+			"brainwallet": "Fejben tartott pénztárca",
+			"vanitywallet": "Kérkedő pénztárca",
+			"splitwallet": "Részekre bontott ~",
+			"detailwallet": "A pénztárca részletei",
+
+			// footer html
+			"footerlabeldonations": "Adományok:",
+			"footerlabeltranslatedby": "Fordította: 1GEBor11XtqDoamipB8nAV7o4fNW5JcrUD",
+			"footerlabelpgp": "PGP",
+			"footerlabelversion": "Változatok története",
+			"footerlabelgithub": "GitHub kódtár",
+			"footerlabelcopyright1": "Copyright bitaddress.org.",
+			"footerlabelcopyright2": "Az egyes JavaScript kódok szerzőinek jogai a forráskódon belül találhatók meg.",
+			"footerlabelnowarranty": "Garancia nincs.",
+
+			// single wallet html
+			"newaddress": "Új cím előállítása",
+			"singleprint": "Nyomtatás",
+			"singlelabelbitcoinaddress": "Bitcoin cím:",
+			"singlelabelprivatekey": "Privát kulcs (WIF, tárca import formátumban):",
+			"singletip1": "<b>Egy bitcoin pénztárca</b> nem más, mint egy bitcoin címből és a hozzá tartozó privát kulcsból álló számpár. Egy ilyen pénztárcát állítottunk elő és jelenítettünk meg fent az Ön számára a Web böngészőben.",
+			"singletip2": "<b>A pénztárca biztonságos megőrzése</b> érdekében nyomtassa ki vagy más módon rögzítse a bitcoin címet és privát kulcsot. Fontos, hogy a privát kulcsból készítsen másolatot, és tárolja biztonságos helyen. Ez a webhely nem tud az ön privát kulcsairól. Ha ismeri a PGP-t, akkor egyben letöltheti az egész web lapot, és ellenőrizheti, hogy a webhely szerzője álatal írt valódi változatot töltötte-e le. Ehhez össze kell hasonlítania a HTML-ből képzett SHA1 zanzát a webhely láblécében hivatkozott, aláírt verzió történetben lévő SHA1 zanzával. Ha elhagyja/megfrissíti a webhelyet vagy megnyomja az 'Új cím előállítása' gombot, akkor egy új privát kulcs áll elő, és az előzőleg megjelenített privát kulcs elvész. A bitcoin címhez tartozó privát kulcsot titokban kell tartani. Bárki, aki megszerzi ezt a kulcsot, el tudja költeni az ehhez a címhez tartozó összes bitcoint. Ha kinyomtatja a pénztárcát, akkor tárolja egy villámzáras vízhatlan nylon-zacskóban. A papír pénztárcát tekintse úgy, mintha pénz lenne.",
+			"singletip3": "<b>Pénzt úgy tehet</b> a pénztárcájába, hogy másokkal bitcoinokat küldet erre a Bitcoin címre.",
+			"singletip4": "<b>A pénztárca egyenlegét</b> úgy kérdezheti le, hogy elmegy a blockchain.info vagy a blockexplorer.com weblapokra, és ott beadja ezt a Bitcoin címet.",
+			"singletip5": "<b>Ha el akarja költeni a bitcoinjait,</b> akkor menjen a blockchain.info weblapra, és a privát kulcson lévő teljes egyenleget töltse át (sweep) a weblapon lévő számlájára. A pénzt úgy is elköltheti, hogy letölti valamelyik népszerű p2p bitcoin klienst, és beimportálja a privát kulcsot a p2p kliens pénztárcájába. Ne feledje, hogy miután beimportálta a kulcsot a p2p bitcoin kliensbe, a kulcsot a p2p kliens a pénztárcában lévő többi kulccsal együtt tárolja. Pénz küldésekor a visszajáró pénzt a p2p kliens pénztárcájában lévő másik bitcoin címre fogják küldeni. Ekkor biztonsági másolatot kell készítenie a p2p kliens pénztárcáról, és a másolatot biztos helyen kell őriznie, mivel a maradék bitcoinjait a pénztárca kulcsai tárolják. Satoshi tanácsa, hogy pénztárcát soha ne töröljünk.",
+
+			// paper wallet html
+			"paperlabelhideart": "A grafika elrejtése?",
+			"paperlabeladdressesperpage": "Címek száma egy oldalon:",
+			"paperlabeladdressestogenerate": "Előállítandó címek száma:",
+			"papergenerate": "Előállítás",
+			"paperprint": "Nyomtatás",
+			"paperlabelBIPpassphrase": "Jelmondat:",
+			"paperlabelencrypt": "BIP38 titkosítás?",
+
+			// bulk wallet html
+			"bulklabelstartindex": "Kezdő index:",
+			"bulklabelrowstogenerate": "Az előállítandó sorok száma:",
+			"bulklabelcompressed": "Tömörített címek használata?",
+			"bulkgenerate": "Előállítás",
+			"bulkprint": "Nyomtatás",
+			"bulklabelcsv": "Vesszővel elválasztott értékek (CSV):",
+			"bulklabelformat": "Index, Cím, Privát cím (WIF)",
+			"bulklabelq1": "Miért jó a Tömeges pénztárca használata, ha Ön bitcoint szeretne elfogadni a web-en?",
+			"bulka1": "Ha Ön bitcoint szeretne elfogadni a web-en, akkor a szokásos megoldás az, hogy installálja a hivatalos bitcoin kliens démont (\"bitcoind\"). Sok web szolgáltató nem támogatja a bitcoin démon installálását. Ráadásul, ha a bitcoin démont a web szerveren futtatja, akkor a privát kulcsai is a web szerveren lesznek tárolva, és a web szerver meghekkelésekor ellophatják őket. A Tömeges pénztárca használatakor csak a bitcoin címeket kell feltölteni a web szerverre, a privát kulcsokat nem. Így nem kell aggódnia, hogy ellopják a bitcoin pénztárcáját, ha betörnek a web szerverre.",
+			"bulklabelq2": "Hogyan használható a Tömeges pénztárca az Ön web helyén bitcoin elfogadásra?",
+			"bulklabela2li1": "A Tömeges pénztárcával állítson elő nagy mennyiségű (10,000+) bitcoin címet. Másolja át a vesszővel elválasztott adatokat (CSV) egy biztonságos szöveges állományba a számítógépére. A szöveges állományról készítsen mentést, és azt őrizze biztonságos környezetben.",
+			"bulklabela2li2": "Importálja be a Bitcoin címeket a web szerverén futó adatbázisba. (A pénztárca privát kulcsait ne importája be, mert ezzel azt kockáztatja, hogy a hackerek ellopják a pénzét. Csak a bitcoin címeket importálja be, úgy, ahogy azt a ügyfelei látják majd.)",
+			"bulklabela2li3": "Web helyének vásárlókosarába vegye fel a bitcoinnal történő fizetés lehetőségét. Ha egy ügyfél bitcoinnal kíván fizetni, akkor \"fizetési címként\" az adatbázis egyik címét jelenítse meg, és a megrendelés mellett ezt a címet tárolja.",
+			"bulklabela2li4": "Most szüksége van arra, hogy értesítést kapjon, ha megérkezett a pénz. A Google-on keressen rá a \"bitcoin payment notification\" kifejezésre, és iratkozzon föl valamelyik szolgáltatóhoz, amely értesítést küld, ha bizonyos címekre Bitcoint küldtek. Számos ilyen szolgáltató van, amelyik Web szervíz, API, SMS, Email, stb. segítségével értesítést küld. Amint megérkezik az értesítés, amelynek automatikus figyelése beprogramozható, máris megkezdheti az ügyfél megrendelésének feldolgozását. Ha manuálisan szeretné ellenőrizni, hogy érkezett-e valamelyik címre pénz, akkor a Block Explorer-t használhatja. A CÍM helyébe írja azt a Bitcoin címet, amelyet ellenőrizni szeretne. A tranzakció megerősítéséhez 10 és 60 perc közötti időre van szükség.<br />http://www.blockexplorer.com/address/CÍM<br /><br />A megerősítetlen tranzakciókat itt lehet megnézni: http://blockchain.info/ <br />A tranzakció 30 másodpercen belül megjelenik.",
+			"bulklabela2li5": "Az Ön bitcoinjai biztonságos módon gyűlnek a blokkláncon. Használja az 1. lépés során előállított eredeti pénztárcát, ha szeretné őket elkölteni.",
+
+			// brain wallet html
+			"brainlabelenterpassphrase": "Adja be a jelmondatot: ",
+			"brainlabelshow": "Jelmondat megjelenítése?",
+			"brainprint": "Nyomtatás",
+			"brainlabelconfirm": "Erősítse meg a jelmondatot: ",
+			"brainview": "Megjelenítés",
+			"brainalgorithm": "Algoritmus: SHA256(jelmondat)",
+			"brainlabelbitcoinaddress": "Bitcoin cím:",
+			"brainlabelprivatekey": "Privát kulcs (WIF, tárca import formátumban):",
+
+			// vanity wallet html
+			"vanitylabelstep1": "1. lépés - az \"1. lépéshez tartozó Kulcspár\" előállítása",
+			"vanitynewkeypair": "Előállítás",
+			"vanitylabelstep1publickey": "1. lépés, Publikus Kulcs:",
+			"vanitylabelstep1pubnotes": "Másolja a fentiekeket a Vanity Pool webhely Your-Part-Public-Key ('az ön publikus kulcsa') mezőjébe.",
+			"vanitylabelstep1privatekey": "1. lépés, Privát Kulcs:",
+			"vanitylabelstep1privnotes": "Másolás és beillesztés segítségével másolja a fenti Privát Kulcsot egy szöveges állományba. Ideális esetben a szöveges állomány egy titkosított meghajtón van. Ha a Vanity Pool megtalálta az Ön által megadott előtaghoz tartozó Privát Kulcsot, akkor lesz szüksége erre az állományra, hogy elő tudja állítani a Privát Kulcsot.",
+			"vanitylabelstep2calculateyourvanitywallet": "2. lépés - A Kérkedő Pénztárca Privát Kulcsának kiszámítása",
+			"vanitylabelenteryourpart": "Adja meg az Önhöz tartozó Privát Kulcsot (amelyet az 1. lépésben állított elő és mentett el):",
+			"vanitylabelenteryourpoolpart": "Adja meg a Pool-hoz tartozó Privát Kulcsot (amely  a Vanity Pool-ból származik):",
+			"vanitylabelnote1": "[MEGJEGYZÉS: ebbe a szövegmezőbe publikus kulcs vagy privát kulcs egyaránt írható]",
+			"vanitylabelnote2": "[MEGJEGYZÉS: ebbe a szövegmezőbe publikus kulcs vagy privát kulcs egyaránt írható]",
+			"vanitylabelradioadd": "Összeadás",
+			"vanitylabelradiomultiply": "Szorzás",
+			"vanitycalc": "A Kérkedő pénztárca kiszámítása",
+			"vanitylabelbitcoinaddress": "Kérkedő Bitcoin cím:",
+			"vanitylabelnotesbitcoinaddress": "Fönt látható az ön új címe, mely magában foglalja a kívánt előtagot.",
+			"vanitylabelpublickeyhex": "Kérkedő Publikus Kulcs (HEX):",
+			"vanitylabelnotespublickeyhex": "A Publikus Kulcs hexadecimális alakban. ",
+			"vanitylabelprivatekey": "Kérkedő Privát Kulcs (WIF):",
+			"vanitylabelnotesprivatekey": "Ez az Ön Privát Kulcsa, mellyel elérheti a pénzét. ",
+
+			// split wallet html
+			"splitlabelthreshold": "A visszaállításhoz szükséges részek minimális száma",
+			"splitlabelshares": "Részek száma",
+			"splitview": "Előállítás",
+			"combinelabelentershares": "Adja be a meglévő részeket (Enter-rel, szóközzel vagy más whitespace karakterrel elválasztva)",
+			"combineview": "A részek összekombinálása",
+			"combinelabelprivatekey": "Visszaállított Privát Kulcs",
+
+			// detail wallet html
+			"detaillabelenterprivatekey": "Adja meg a Privát Kulcsot",
+			"detailkeyformats": "Kulcs formátumok: WIF, WIFC, HEX, B64, B6, MINI, BIP38",
+			"detailview": "Részletek megjelenítése",
+			"detailprint": "Nyomtatás",
+			"detaillabelnote1": "A Bitcoin Privát Kulcs egy titkos szám, melyet csak Ön ismer. Számos különböző formátumban kódolható. Az alábbiakban megjelenítettük a a Privát Kulcshoz tartozó Bitcoin Címet és Publikus kulcsot, valamint a Privát Kulcsot a legnépszerűbb kódolási formátumokban (WIF, WIFC, HEX, B64, MINI).",
+			"detaillabelnote2": "A Bitcoin v0.6+ a publikus kulcsokat tömörített formátumban tárolja. A kliens az importprivkey/dumpprivkey parancsokkal a privát kulcsok importálását és exportálását is támogatja. Az exportált privát kulcsok formátumát csupán a Bitcoin pénztárca verziószáma határozza meg.",
+			"detaillabelbitcoinaddress": "Bitcoin cím:",
+			"detaillabelbitcoinaddresscomp": "Tömörített Bitcoin cím:",
+			"detaillabelpublickey": "Publikus Kulcs (130 karakter [0-9A-F]):",
+			"detaillabelpublickeycomp": "Tömörített Publikus Kulcs (66 karakter [0-9A-F]):",
+			"detaillabelprivwif": "WIF Privát Kulcs <br />51 db base58 karakter, melynek kezdete",
+			"detaillabelprivwifcomp": "Tömörített WIF Privát Kulcs <br />52 db base58 karakter, melynek kezdete",
+			"detailcompwifprefix": "'K' vagy 'L'",
+			"detaillabelprivhex": "Hexadecimális formátumú Privát Kulcs (64 karakter [0-9A-F]):",
+			"detaillabelprivb64": "Base64 formátumú Privát Kulcs (44 karakter):",
+			"detaillabelprivmini": "Mini formátumú Privát Kulcs (22, 26 vagy 30 karakter, amely egy 'S'-sel kezdődik):",
+			"detaillabelpassphrase": "BIP38 jelmondat",
+			"detaildecrypt": "BIP38 dekódolás",
+			"detaillabelq1": "Hogyan lehet dobókockával pénztárcát készíteni? Mit jelent a B6 formátum?",
+			"detaila1": "Egy Bitcoin pénztárca előállításakor nagyon fontos, hogy a felhasznált véletlen számok valóban véletlenek legyenek. A fizikai véletlen jobb, mint a számítógéppel előállított pszeudo-véletlen. Fizikai véletlen a legegyszerűbben egy dobókockával állítható elő. Ha szeretne egy Bitcoin privát címet előállítani, akkor csupán egy dobókockára van szüksége, mellyel 99-szer kell dobni. Jegyezze fel minden egyes dobása eredményét. Az eredmények feljegyzésekor a következő szabályokat kövesse: 1->1, 2->2, 3->3, 4->4, 5->5, 6->0. Ha így tesz, akkor a privát kulcshoz tartozó véletlen számot B6 formátumban, vagyis 6-os számrendszerben rögzíti. Írja be ezt a 99 karakterből álló 6-os számrendszerbeli privát kulcsot a fenti szövegmezőbe, majd nyomja meg a 'Részletek megjelenítése' gombot. Ekkor megjelenik az a Bitcoin cím, amely ehhez a privát kulcshoz tartozik. Érdemes felírni a WIF formátumú privát kulcsot is, mivel ezt szélesebb körben használják."
+		},
+
+		"jp": {
+			// javascript alerts or messages
+			"testneteditionactivated": "テストネット版が有効になりました。",
+			"paperlabelbitcoinaddress": "ビットコインアドレス",
+			"paperlabelprivatekey": "プライベートキー(WIF形式)",
+			"paperlabelencryptedkey": "暗号化されたプライベートキー(パスワード必須)",
+			"bulkgeneratingaddresses": "アドレス生成中...",
+			"brainalertpassphrasetooshort": "パスワードが短すぎます \n\n",
+			"brainalertpassphrasewarning": "注意：強いパスワードを選ばないとプライベートキーを安易に当てられてビットコインを盗まれてしまいます。<br>なお、<b>UTF-8の文字も使えるため、キーボードが半角か全角か今一度ご確認下さい。</b>",
+			"brainalertpassphrasedoesnotmatch": "パスワードが一致しません",
+			"detailalertnotvalidprivatekey": "入力された文字列は有効なプライベートキーではありません。",
+			"detailconfirmsha256": "入力された文字列は有効なプライベートキーではありません。\n\n代わりにこの文字列をパスワードとして、SHA256ハッシュを用いプライベートキーを生成しますか？\n\n注意: 強いパスワードを選ばないとプライベートキーを安易に当てられてビットコインを盗まれてしまいます。",
+			"bip38alertincorrectpassphrase": "暗号化されたプライベートキーに一致しないパスワードです。",
+			"bip38alertpassphraserequired": "BIP38キーを生成するにはパスワードをかける必要があります。",
+			"vanityinvalidinputcouldnotcombinekeys": "不正入力です。キーを結合できませんでした。",
+			"vanityalertinvalidinputpublickeysmatch": "不正入力です。両方のパブリックキーが同じです。2つの異なるキーをお使い下さい。",
+			"vanityalertinvalidinputcannotmultiple": "不正入力です。2つのパブリックキーを掛け合わせることはできません。「足し算」を選択し、2つのパブリックキーを足し合わせてアドレスを生成して下さい。",
+			"vanityprivatekeyonlyavailable": "2つのプライベートキーを掛け合わせた時だけ有効です。",
+			"vanityalertinvalidinputprivatekeysmatch": "不正入力両方のプライベートキーがチケットに一致します。2つの異なるキーをお使い下さい。",
+
+			// header and menu html
+			"tagline": "クライエント側ビットコインアドレス生成(JavaScript使用)",
+			"generatelabelbitcoinaddress": "ビットコインアドレスを生成中...",
+			"generatelabelmovemouse": "マウスを動かして、ランダム要素を追加してください。",
+			"generatelabelkeypress": "もしくはこちらの入力欄にランダムな文字を打って下さい。",
+			"singlewallet": "シングルウォレット",
+			"paperwallet": "ペーパーウォレット",
+			"bulkwallet": "大量ウォレット",
+			"brainwallet": "暗記ウォレット",
+			"vanitywallet": "カスタムウォレット",
+			"detailwallet": "ウォレットの詳細",
+
+			// footer html
+			"footerlabeldonations": "プロジェクト寄付先",
+			"footerlabeltranslatedby": "日本語訳寄付先 1o3EBhxPhGn8cGCL6Wzi5F5kTPuBofdMf",
+			"footerlabelpgp": "PGP",
+			"footerlabelversion": "バージョン履歴",
+			"footerlabelgithub": "GitHubリポジトリ",
+			"footerlabelcopyright1": "Copyright bitaddress.org.",
+			"footerlabelcopyright2": "JavaScriptのコピーライト情報はソースに含まれています。",
+			"footerlabelnowarranty": "保障はありません。",
+
+			// single wallet html
+			"newaddress": "新アドレス生成",
+			"singleprint": "印刷",
+			"singlelabelbitcoinaddress": "ビットコインアドレス",
+			"singlelabelprivatekey": "プライベートキー (WIF形式)",
+			"singletip1": "<b>ビットコインウォレットとは</b> ビットコインのアドレスと対応するプライベートキーを組み合わせたものです。新しいアドレスがブラウザー上で生成され、上記に表示されています。",
+			"singletip2": "<b>このウォレットを守るためには</b> ビットコインアドレスとビットコインプライベートキーを印刷するなどの手段で記録しなければいけません。プライベートキーが無いとペアになっているアドレスに送られたビットコインが使えないので、人に晒されないような方法でプライベートキーのコピーを取り、大事に保管して下さい。このサイトはこのプライベートキーの保存はしません。PGPをご存知の方は、このサイトを1つのhtmlファイルで落とすことができるので、このサイトのhtmlファイルのSHA1ハッシュとサイトのフッターにデジタル署名されたメッセージに入ったハッシュを比べて不正にいじられていないかをお確かめいただけます。このページを閉じたり、離れたり、”新アドレス生成”を押すと現在表示されているプライベートキーは消え、新規アドレスが生成されるので、ご使用の場合は必ず何らかの手段で記録しておいて下さい。プライベートキーは秘密にしてください。共有されますと、対応するビットコインアドレスに存在するコインが全て共有者間で利用可能となります。ウォレット情報を印刷したら、濡れないようにジップロックに入れましょう。紙幣と同様に扱うよう心がけてください。",
+			"singletip3": "<b>このウォレットにコインを追加 : </b> 他の人から自分のビットコインアドレスに送ってもらう。",
+			"singletip4": "<b>残高照会は</b> blockchain.infoやblockexplorer.comに行き、ビットコインアドレスを入力してお調べ下さい。",
+			"singletip5": "<b>ビットコインを使おう。</b> 送金するには、このページで生成したプライベートキーをblockchain.infoのウォレットや各種パソコン・スマホ端末にあるウォレットアプリなどに取り込んで使えます。しかし、その時点でそのアドレスが取り込んだウォレットの他のアドレスと融合してしまい、この一つのアドレスのバックアップだけじゃビットコインを保管することはできなくなります。取り込み先のウォレットを強いパスワードで暗号化し、バックアップして、安全に扱って下さい。ビットコインの考案者「サトシさん」曰く、「一度作ったウォレットを、空にしたとしても、削除しない方が良い。」(メールアドレスと同じく、いつ昔の友達や親戚から古いアドレス宛にビットコインを送ってくるかわかりませんから。)",
+
+			// paper wallet html
+			"paperlabelhideart": "デザイン非表示",
+			"paperlabeladdressesperpage": "1ページごとのアドレス数",
+			"paperlabeladdressestogenerate": "生成するアドレス数",
+			"papergenerate": "生成",
+			"paperprint": "印刷",
+			"paperlabelBIPpassphrase": "パスワード",
+			"paperlabelencrypt": "BIP38で暗号化？",
+
+			// bulk wallet html
+			"bulklabelstartindex": "開始番号",
+			"bulklabelrowstogenerate": "生成する行数",
+			"bulklabelcompressed": "アドレスを短縮？",
+			"bulkgenerate": "生成",
+			"bulkprint": "印刷",
+			"bulklabelcsv": "カンマ区切り値",
+			"bulklabelformat": "番号、アドレス、プライベートキー(WIF形式)",
+			"bulklabelq1": "ウェブサイトでビットコインを受け付ける時、何故大量のアドレスを生成しておいた方がいいのか？",
+			"bulka1": "以前はビットコインをサイトで受け付けたかったら、「bitcoind」というビットコインのシステムサービスをサーバーにアップロードし、サーバー上で実行しなければいけませんでした。しかし、このやり方だとサーバーがハッキングされてしまった場合、プライベートキーも全て持って行かれてしまいます。大量に生成しておいて、ビットコインアドレスだけをサーバーにアップしておけば、プライベートキーを安全な場所に保管できます。",
+			"bulklabelq2": "どうやって大量生成を使ってサイトでビットコインを受け付けられるようにできるのか？",
+			"bulklabela2li1": "大量生成タブで大量のビットコインを生成(10,000+でも可)。出てくるCSVテキストをコピーして、安全なテキストエディターで貼り付けて、安全な場所に保存しておいて下さい。一つバックアップを取り、別の場所で保管しておく(強いパスワードのかかったzipなどで)",
+			"bulklabela2li2": "ビットコインアドレスをウェブサーバーにアップロード。プライベートキーはアップロードしないで下さい。ユーザーに見せたい宛先用のアドレスのみをアップロードして下さい。",
+			"bulklabela2li3": "サイトのショッピングカート機能にビットコインのリンクを追加して下さい。クリックされた時、お値段と先ほどアップしたビットコインアドレスが順番に出てくるようにしておいて下さい(1取引1アドレス)。注文の情報と一緒に、このアドレスも一緒に保存して、後で紐付けられるようにしておいて下さい。",
+			"bulklabela2li4": "後は支払いの通知を受けないと注文を通すか否か分かりません。グーグルで「bitcoin payment notification」と検索したら、SMS、メール、APIなどでビットコインの支払いがあった際教えてくれます。これをコードの中に組み込んで、支払いがあったら注文を通すようにもできます。手動で送金があったかを見る場合、blockchain.infoに行き、宛先のアドレスを入力すれば、取引履歴から送金の事実を確認できます。大体送金の30秒後に表示され、10分～1時間の間に「確認」されます。",
+			"bulklabela2li5": "送られたビットコインはブロックチェーンにて安全に保管されます。送金するには1番で作成したウォレットを何らかのビットコインソフトに取り込んでご利用下さい。",
+
+			// brain wallet html
+			"brainlabelenterpassphrase": "パスワード",
+			"brainlabelshow": "表示",
+			"brainprint": "印刷",
+			"brainlabelconfirm": "パスワードをもう一度",
+			"brainview": "アドレスを見せる",
+			"brainalgorithm": "アルゴリズム SHA256 (パスワード)",
+			"brainlabelbitcoinaddress": "ビットコインアドレス",
+			"brainlabelprivatekey": "プライベートキー(WIF形式)",
+
+			// vanity wallet html
+			"vanitylabelstep1": "ステップ１「ステップ１キーペア」を生成",
+			"vanitynewkeypair": "生成",
+			"vanitylabelstep1publickey": "ステップ１パブリックキー",
+			"vanitylabelstep1pubnotes": "上記のものをカスタムアドレス生成業者の注文フォームに貼り付けて下さい。",
+			"vanitylabelstep1privatekey": "ステップ１プライベートキー",
+			"vanitylabelstep1privnotes": "上記のものを安全なテキストファイルに貼り付け、大事に保管しておいて下さい。パスワードで暗号化することをオススメします。カスタムアドレス生成業者からアドレスプレフィックスをもらった時にこれが必要となります。",
+			"vanitylabelstep2calculateyourvanitywallet": "ステップ2カスタムアドレスを計算",
+			"vanitylabelenteryourpart": "ステップ１で保存したプライベートキーを入力",
+			"vanitylabelenteryourpoolpart": "カスタムアドレス生成業者からもらったプライベートキーを入力",
+			"vanitylabelnote1": "[メモ： この欄はパブリックキーでもプライベートキーでも可能です。]",
+			"vanitylabelnote2": "[メモ： この欄はパブリックキーでもプライベートキーでも可能です。]",
+			"vanitylabelradioadd": "足し算",
+			"vanitylabelradiomultiply": "掛け算",
+			"vanitycalc": "カスタムアドレスを計算",
+			"vanitylabelbitcoinaddress": "カスタムビットコインアドレス",
+			"vanitylabelnotesbitcoinaddress": "ご希望された頭文字を持ったアドレスになっています。",
+			"vanitylabelpublickeyhex": "カスタムパブリックキー(HEX)",
+			"vanitylabelnotespublickeyhex": "パブリックキーを16進で表したものです。",
+			"vanitylabelprivatekey": "カスタムプライベートキー(WIF形式)",
+			"vanitylabelnotesprivatekey": "上記のアドレスに送られたビットコインを使うためのプライベートキーです。",
+
+			// detail wallet html
+			"detaillabelenterprivatekey": "プライベートキーを入力",
+			"detailkeyformats": "受け付けるキーの形式 WIF, WIFC, HEX, B64, B6, MINI, BIP38",
+			"detailview": "詳細を表示",
+			"detailprint": "印刷",
+			"detaillabelnote1": "ビットコインプライベートキーはあなたにしか分からない秘密の鍵。色々な形式で表示することができ、下記で表示しているのはビットコインアドレス、パブリックキー、プライベートキー、そして複数の形式でプライベートキーを表示します。(WIF, WIFC, HEX, B64, MINI)",
+			"detaillabelnote2": "ビットコイン v0.6より圧縮したパブリックキーを保存している。なお、importprivkey / dumpprivkeyのコマンドを用いてプライベートキーのインポートとエクスポートもできる。エクスポートされるプライベートキーの形式はウォレットの作成時期とバージョンによって異なってくる。",
+			"detaillabelbitcoinaddress": "ビットコインアドレス",
+			"detaillabelbitcoinaddresscomp": "ビットコインアドレス(圧縮)",
+			"detaillabelpublickey": "パブリックキー (130文字[0-9A-F])",
+			"detaillabelpublickeycomp": "パブリックキー (圧縮、66文字[0-9A-F])",
+			"detaillabelprivwif": "プライベートキー (WIF)<br>(base58コード51文字) 頭文字が",
+			"detaillabelprivwifcomp": "プライベートキー (WIF)<br>(圧縮、base58コード52文字) 頭文字が",
+			"detailwifprefix": "'5'",
+			"detailcompwifprefix": "'K' か 'L'",
+			"detaillabelprivhex": "プライベートキー(16進) (64文字[0-9A-F])",
+			"detaillabelprivb64": "プライベートキー(base64コード) (44文字)",
+			"detaillabelpassphrase": "BIP38パスワード",
+			"detaildecrypt": "BIP38暗号を解除",
+			"detaillabelq1": "サイコロを使ってどうやってアドレス作るのか？「B6」とは何か？",
+			"detaila1": "ビットコインのアドレスの生成には一番大事なことが、アドレス生成に使われている乱数が本当にランダムなのかというところです。自然界に起きる物理的なランダムさはパソコンが生成する(似非)ランダムさよりは優れている。物理的なランダムさを作る一番簡単な方法はサイコロを振ることです。ビットコインのプライベートキーを生成するには、6面のサイコロを99回振って、毎回結果を記載していきます。規則として1⇒1, 2⇒2, 3⇒3, 4⇒4, 5⇒5, 6⇒0というように、6が出る度に「0」と記載して下さい。99桁の6進数字列ができたら、上記の入力欄に入れて、「詳細を表示」ボタンを押して下さい。これでWIF形式のプライベートキーやそれと紐づくビットコインアドレスが表示されます。これらを記載し、通常生成されたビットコインアドレスと同じように保管しておいて下さい。",
+		}
 	}
 };
 
